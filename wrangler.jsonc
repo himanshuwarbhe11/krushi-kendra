@@ -1,1 +1,21 @@
 
+
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "krushi-kendra",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-12",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shree-om-krushi-db",
+      "database_id": "fca8cf8f-42d0-42be-8f4b-eb95d30facaf",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
