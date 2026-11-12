@@ -1,1 +1,83 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shree Om Krushi Kendra - Admin</title>
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>🌱 श्री ओम कृषी केंद्र</h1>
+      <p>Admin Management Panel</p>
+    </header>
+
+    <section id="login">
+      <h2>Admin Login</h2>
+      <form id="loginForm">
+        <input id="username" placeholder="Username" required>
+        <input id="password" type="password"
+          placeholder="Password" required>
+        <button>Login</button>
+      </form>
+      <p id="loginError" class="error"></p>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="top">
+        <h2>Dashboard</h2>
+        <button id="logout" class="secondary">Logout</button>
+      </div>
+
+      <nav>
+        <button data-tab="products">Products</button>
+        <button data-tab="customers">Customers</button>
+        <button data-tab="orders">Orders</button>
+        <button data-tab="reports">Reports</button>
+      </nav>
+
+      <section id="products" class="panel">
+        <h3>Product Management</h3>
+        <form id="productForm">
+          <input id="productName" placeholder="Product name" required>
+          <input id="category" placeholder="Category">
+          <textarea id="description" placeholder="Description"></textarea>
+          <input id="price" type="number" min="0" step="0.01"
+            placeholder="Price (₹)" required>
+          <input id="stock" type="number" min="0" step="1"
+            placeholder="Stock" required>
+          <input id="imageUrl" type="url" placeholder="Image URL">
+          <button id="saveProduct">Add Product</button>
+          <button type="button" id="cancelEdit" class="secondary" hidden>
+            Cancel edit
+          </button>
+        </form>
+        <div id="productList"></div>
+      </section>
+
+      <section id="customers" class="panel" hidden>
+        <h3>Customers</h3>
+        <div id="customerList"></div>
+      </section>
+
+      <section id="orders" class="panel" hidden>
+        <h3>Orders</h3>
+        <div id="orderList"></div>
+      </section>
+
+      <section id="reports" class="panel" hidden>
+        <h3>Sales Summary</h3>
+        <div id="reportSummary"></div>
+        <h3>Last 30 days</h3>
+        <div id="dailyReport"></div>
+      </section>
+
+      <p id="message" role="status"></p>
+    </section>
+  </main>
+  <script src="/admin.js" defer></script>
+</body>
+</html>
