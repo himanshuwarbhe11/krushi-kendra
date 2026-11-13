@@ -3,512 +3,141 @@
 <html lang="mr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>श्री ओम कृषी केंद्र | रसुलाबाद, वर्धा</title>
-
-  <meta name="description"
-    content="श्री ओम कृषी केंद्र, रसुलाबाद येथे दर्जेदार बियाणे, खते आणि कीटकनाशके उपलब्ध. शेतकऱ्यांसाठी विश्वासार्ह कृषी सेवा.">
-
-  <meta name="keywords"
-    content="श्री ओम कृषी केंद्र, कृषी केंद्र, बियाणे, खते, कीटकनाशके, रसुलाबाद, आर्वी, वर्धा">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#176b36">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Noto Sans Devanagari", "Arial", sans-serif;
-      color: #26332a;
-      line-height: 1.7;
-      background: #f7fbf5;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1150px;
-      margin: auto;
-    }
-
-    header {
-      background: #176b36;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 3px 12px #0002;
-    }
-
-    .navbar {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .logo {
-      font-size: 23px;
-      font-weight: bold;
-      color: white;
-    }
-
-    .logo span {
-      color: #c9f27a;
-    }
-
-    nav {
-      display: flex;
-      gap: 25px;
-    }
-
-    nav a {
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      color: #c9f27a;
-    }
-
-    .menu-btn {
-      display: none;
-      border: 0;
-      color: white;
-      background: transparent;
-      font-size: 28px;
-      cursor: pointer;
-    }
-
-    .hero {
-      min-height: 570px;
-      display: flex;
-      align-items: center;
-      color: white;
-      background:
-        linear-gradient(90deg, #092d18e8, #092d1870),
-        url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=85")
-        center/cover no-repeat;
-    }
-
-    .hero-content {
-      max-width: 720px;
-      padding: 90px 0;
-    }
-
-    .hero h1 {
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1.35;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 19px;
-      margin-bottom: 30px;
-      color: #f1f8ed;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 13px 25px;
-      border-radius: 7px;
-      font-weight: bold;
-      margin: 5px 8px 5px 0;
-      transition: 0.3s;
-    }
-
-    .btn-primary {
-      background: #a5d943;
-      color: #173c1e;
-    }
-
-    .btn-secondary {
-      border: 2px solid white;
-      color: white;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    section {
-      padding: 75px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 42px;
-    }
-
-    .section-title h2 {
-      font-size: 34px;
-      color: #176b36;
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: #68766a;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .product-card {
-      background: white;
-      padding: 30px 22px;
-      text-align: center;
-      border-radius: 14px;
-      box-shadow: 0 5px 22px #183b1b12;
-      transition: 0.3s;
-      border-bottom: 4px solid #a5d943;
-    }
-
-    .product-card:hover {
-      transform: translateY(-7px);
-    }
-
-    .product-icon {
-      font-size: 55px;
-      margin-bottom: 15px;
-    }
-
-    .product-card h3 {
-      color: #176b36;
-      font-size: 23px;
-      margin-bottom: 10px;
-    }
-
-    .about {
-      background: #eaf4e7;
-    }
-
-    .about-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 45px;
-      align-items: center;
-    }
-
-    .about-content h2 {
-      color: #176b36;
-      font-size: 32px;
-      margin-bottom: 18px;
-    }
-
-    .about-image {
-      min-height: 330px;
-      border-radius: 15px;
-      background:
-        url("https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1000&q=85")
-        center/cover;
-    }
-
-    .owner {
-      margin-top: 18px;
-      font-weight: bold;
-      color: #176b36;
-    }
-
-    .contact {
-      background: white;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .contact-card {
-      background: #f1f8ed;
-      border-radius: 12px;
-      padding: 25px 18px;
-      text-align: center;
-    }
-
-    .contact-card .icon {
-      font-size: 35px;
-    }
-
-    .contact-card h3 {
-      color: #176b36;
-      margin: 10px 0;
-    }
-
-    .contact-card p {
-      overflow-wrap: anywhere;
-    }
-
-    .contact-card a {
-      color: #176b36;
-      font-weight: bold;
-    }
-
-    .cta {
-      background: #176b36;
-      color: white;
-      text-align: center;
-    }
-
-    .cta h2 {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-
-    .cta p {
-      margin-bottom: 20px;
-    }
-
-    footer {
-      background: #103e24;
-      color: white;
-      padding: 25px 0;
-      text-align: center;
-    }
-
-    .whatsapp-float {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: #25d366;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 30px;
-      box-shadow: 0 4px 15px #0004;
-      z-index: 1001;
-    }
-
-    @media(max-width: 768px) {
-      .menu-btn {
-        display: block;
-      }
-
-      nav {
-        display: none;
-        position: absolute;
-        top: 76px;
-        left: 0;
-        width: 100%;
-        padding: 20px;
-        background: #176b36;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      nav.active {
-        display: flex;
-      }
-
-      .hero {
-        min-height: 500px;
-      }
-
-      .hero-content {
-        padding: 65px 0;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .products,
-      .about-content,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-title h2 {
-        font-size: 28px;
-      }
-
-      section {
-        padding: 55px 0;
-      }
-
-      .about-image {
-        min-height: 240px;
-      }
-    }
-  </style>
+  <meta name="description" content="श्री ओम कृषी केंद्र, रसुलाबाद, आर्वी, वर्धा. बियाणे, खते आणि कृषी उत्पादने.">
+  <title>श्री ओम कृषी केंद्र | Shree Om Krushi Kendra</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
-
 <body>
 
-  <header>
-    <div class="container navbar">
-      <a href="#home" class="logo">🌱 श्री ओम <span>कृषी केंद्र</span></a>
+<header class="header">
+  <a href="#home" class="brand">
+    <span class="brand-icon">🌱</span>
+    <span>श्री ओम कृषी केंद्र<small>Shree Om Krushi Kendra</small></span>
+  </a>
+  <nav>
+    <a href="#home" data-en="Home" data-mr="मुख्यपृष्ठ">मुख्यपृष्ठ</a>
+    <a href="#products" data-en="Products" data-mr="उत्पादने">उत्पादने</a>
+    <a href="#about" data-en="About" data-mr="आमच्याबद्दल">आमच्याबद्दल</a>
+    <a href="#contact" data-en="Contact" data-mr="संपर्क">संपर्क</a>
+  </nav>
+  <div class="header-actions">
+    <button id="languageBtn" class="outline">English</button>
+    <button id="cartBtn" class="cart-btn">🛒 <span id="cartCount">0</span></button>
+  </div>
+</header>
 
-      <button class="menu-btn" onclick="toggleMenu()" aria-label="मेनू उघडा">
-        ☰
-      </button>
-
-      <nav id="navigation">
-        <a href="#home" onclick="closeMenu()">मुख्यपृष्ठ</a>
-        <a href="#products" onclick="closeMenu()">आमची उत्पादने</a>
-        <a href="#about" onclick="closeMenu()">आमच्याबद्दल</a>
-        <a href="#contact" onclick="closeMenu()">संपर्क</a>
-      </nav>
+<main>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="eyebrow" data-en="Your trusted farming partner" data-mr="शेतकऱ्यांचा विश्वासू साथीदार">शेतकऱ्यांचा विश्वासू साथीदार</span>
+      <h1 data-en="Grow Better. Harvest More." data-mr="शेती समृद्ध करा, उत्पादन वाढवा.">शेती समृद्ध करा, उत्पादन वाढवा.</h1>
+      <p data-en="Quality seeds, fertilizers and agricultural products for your farm." data-mr="आपल्या शेतीसाठी दर्जेदार बियाणे, खते आणि कृषी उत्पादने.">आपल्या शेतीसाठी दर्जेदार बियाणे, खते आणि कृषी उत्पादने.</p>
+      <a href="#products" class="primary" data-en="Explore Products" data-mr="उत्पादने पहा">उत्पादने पहा</a>
+      <a href="https://wa.me/917768887401" class="secondary" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-  </header>
+    <div class="hero-symbol">🌾</div>
+  </section>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <h1>शेतकऱ्यांच्या विश्वासाचे नाव<br>श्री ओम कृषी केंद्र</h1>
+  <section class="benefits">
+    <div>🌱 <span data-en="Quality Products" data-mr="दर्जेदार उत्पादने">दर्जेदार उत्पादने</span></div>
+    <div>🤝 <span data-en="Trusted Service" data-mr="विश्वासार्ह सेवा">विश्वासार्ह सेवा</span></div>
+    <div>🚜 <span data-en="Farmer First" data-mr="शेतकरी प्रथम">शेतकरी प्रथम</span></div>
+  </section>
 
-          <p>
-            दर्जेदार बियाणे, खते आणि कीटकनाशके.
-            शेतीच्या प्रत्येक टप्प्यावर आपल्या सेवेत!
-          </p>
-
-          <a href="#products" class="btn btn-primary">उत्पादने पहा</a>
-          <a href="tel:+917768887401" class="btn btn-secondary">
-            📞 संपर्क साधा
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="products">
-      <div class="container">
-        <div class="section-title">
-          <h2>आमची उत्पादने</h2>
-          <p>आपल्या शेतीसाठी आवश्यक कृषी उत्पादने</p>
-        </div>
-
-        <div class="products">
-          <div class="product-card">
-            <div class="product-icon">🌱</div>
-            <h3>बियाणे</h3>
-            <p>विविध पिकांसाठी दर्जेदार बियाणे उपलब्ध.</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-icon">🌾</div>
-            <h3>खते</h3>
-            <p>पिकांच्या वाढीसाठी आवश्यक कृषी खते.</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-icon">🧴</div>
-            <h3>कीटकनाशके</h3>
-            <p>पिकांच्या संरक्षणासाठी विविध कीटकनाशके.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="about" id="about">
-      <div class="container about-content">
-        <div>
-          <h2>आमच्याबद्दल</h2>
-
-          <p>
-            श्री ओम कृषी केंद्र हे रसुलाबाद, तालुका आर्वी,
-            जिल्हा वर्धा येथे स्थित कृषी सेवा केंद्र आहे.
-          </p>
-
-          <p>
-            शेतकऱ्यांना बियाणे, खते आणि कीटकनाशके
-            उपलब्ध करून देणे हे आमचे उद्दिष्ट आहे.
-          </p>
-
-          <p class="owner">
-            संचालक: श्री. रविंद्र दामोदर सावरकर
-          </p>
-        </div>
-
-        <div class="about-image" role="img" aria-label="हिरवीगार शेती"></div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="container">
-        <div class="section-title">
-          <h2>आमच्याशी संपर्क साधा</h2>
-          <p>कृषी उत्पादनांच्या माहितीसाठी आजच संपर्क करा.</p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-card">
-            <div class="icon">📍</div>
-            <h3>आमचा पत्ता</h3>
-            <p>रसुलाबाद, तालुका आर्वी,<br>जिल्हा वर्धा, महाराष्ट्र</p>
-          </div>
-
-          <div class="contact-card">
-            <div class="icon">📞</div>
-            <h3>मोबाईल नंबर</h3>
-            <a href="tel:+917768887401">7768887401</a>
-          </div>
-
-          <div class="contact-card">
-            <div class="icon">💬</div>
-            <h3>व्हॉट्सॲप</h3>
-            <a href="https://wa.me/917768887401" target="_blank"
-               rel="noopener">व्हॉट्सॲपवर संपर्क करा</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="container">
-        <h2>आपली शेती, आपली प्रगती! 🌱</h2>
-        <p>श्री ओम कृषी केंद्र — शेतकऱ्यांच्या सेवेसाठी सदैव तत्पर.</p>
-        <a href="https://wa.me/917768887401" target="_blank"
-           rel="noopener" class="btn btn-primary">
-          व्हॉट्सॲपवर चौकशी करा
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> श्री ओम कृषी केंद्र. सर्व हक्क राखीव.</p>
-      <p>रसुलाबाद, आर्वी, वर्धा, महाराष्ट्र</p>
+  <section class="products-section" id="products">
+    <div class="section-heading">
+      <span class="eyebrow" data-en="Our Collection" data-mr="आमचा संग्रह">आमचा संग्रह</span>
+      <h2 data-en="Agriculture Products" data-mr="कृषी उत्पादने">कृषी उत्पादने</h2>
+      <p data-en="Choose the right products for your farm." data-mr="आपल्या शेतीसाठी योग्य उत्पादने निवडा.">आपल्या शेतीसाठी योग्य उत्पादने निवडा.</p>
     </div>
-  </footer>
 
-  <a class="whatsapp-float"
-     href="https://wa.me/917768887401"
-     target="_blank"
-     rel="noopener"
-     aria-label="व्हॉट्सॲपवर संपर्क करा">☘</a>
+    <input id="searchInput" class="search" type="search" placeholder="उत्पादने शोधा...">
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("navigation").classList.toggle("active");
-    }
+    <div class="categories" id="categories">
+      <button class="category active" data-category="all">सर्व</button>
+      <button class="category" data-category="Seeds">बियाणे</button>
+      <button class="category" data-category="Fertilizers">खते</button>
+      <button class="category" data-category="Pesticides">कीटकनाशके</button>
+      <button class="category" data-category="Tools">शेती साधने</button>
+    </div>
 
-    function closeMenu() {
-      document.getElementById("navigation").classList.remove("active");
-    }
+    <div id="productGrid" class="product-grid">
+      <p class="loading">उत्पादने लोड होत आहेत...</p>
+    </div>
+  </section>
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+  <section class="about" id="about">
+    <div>
+      <span class="eyebrow" data-en="About Our Shop" data-mr="आमच्याबद्दल">आमच्याबद्दल</span>
+      <h2 data-en="Serving Farmers With Trust" data-mr="शेतकऱ्यांच्या विश्वासाचे नाव">शेतकऱ्यांच्या विश्वासाचे नाव</h2>
+      <p data-en="Shree Om Krushi Kendra provides agricultural products and services to farmers." data-mr="श्री ओम कृषी केंद्र हे रसुलाबाद, तालुका आर्वी, जिल्हा वर्धा येथे स्थित कृषी सेवा केंद्र आहे. शेतकऱ्यांना दर्जेदार कृषी उत्पादने उपलब्ध करून देणे हे आमचे उद्दिष्ट आहे.">
+        श्री ओम कृषी केंद्र हे रसुलाबाद, तालुका आर्वी, जिल्हा वर्धा येथे स्थित कृषी सेवा केंद्र आहे. शेतकऱ्यांना दर्जेदार कृषी उत्पादने उपलब्ध करून देणे हे आमचे उद्दिष्ट आहे.
+      </p>
+      <p class="owner">संचालक: श्री. रविंद्र दामोदर सावरकर</p>
+    </div>
+    <div class="about-art">🌿🌾🚜</div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="section-heading">
+      <h2 data-en="Contact Us" data-mr="आमच्याशी संपर्क साधा">आमच्याशी संपर्क साधा</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span>📍</span>
+        <h3 data-en="Address" data-mr="पत्ता">पत्ता</h3>
+        <p>रसुलाबाद, तालुका आर्वी,<br>जिल्हा वर्धा, महाराष्ट्र</p>
+      </div>
+      <div class="contact-card">
+        <span>📞</span>
+        <h3 data-en="Phone" data-mr="मोबाईल">मोबाईल</h3>
+        <a href="tel:+917768887401">7768887401</a>
+      </div>
+      <div class="contact-card">
+        <span>💬</span>
+        <h3>WhatsApp</h3>
+        <a href="https://wa.me/917768887401" target="_blank" rel="noopener">संपर्क करा</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2 data-en="Your Farm. Your Progress!" data-mr="आपली शेती, आपली प्रगती!">आपली शेती, आपली प्रगती!</h2>
+    <p data-en="We are always ready to serve farmers." data-mr="शेतकऱ्यांच्या सेवेसाठी सदैव तत्पर.">शेतकऱ्यांच्या सेवेसाठी सदैव तत्पर.</p>
+    <a href="https://wa.me/917768887401" target="_blank" rel="noopener" class="primary">WhatsApp वर संपर्क करा</a>
+  </section>
+</main>
+
+<div class="modal" id="cartModal" aria-hidden="true">
+  <div class="modal-content">
+    <button id="closeCart" class="close" aria-label="Close">×</button>
+    <h2 data-en="Your Shopping Cart" data-mr="तुमची खरेदी">तुमची खरेदी</h2>
+    <div id="cartItems"></div>
+    <h3>Total: ₹<span id="cartTotal">0.00</span></h3>
+    <form id="checkoutForm">
+      <label for="customerName">नाव / Name</label>
+      <input id="customerName" required minlength="2" maxlength="100">
+      <label for="customerPhone">मोबाईल नंबर / Mobile</label>
+      <input id="customerPhone" type="tel" required pattern="[0-9+() -]{8,20}">
+      <label for="orderNotes">पत्ता व सूचना / Address and notes</label>
+      <textarea id="orderNotes" maxlength="500"></textarea>
+      <button id="checkoutBtn" class="primary full" type="submit">WhatsApp वर ऑर्डर करा</button>
+    </form>
+    <p id="orderMessage" role="status"></p>
+  </div>
+</div>
+
+<footer>
+  <strong>🌱 श्री ओम कृषी केंद्र</strong>
+  <p>रसुलाबाद, आर्वी, वर्धा, महाराष्ट्र</p>
+  <p>© <span id="year"></span> Shree Om Krushi Kendra</p>
+  <a href="/admin.html">Admin Login</a>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/917768887401" target="_blank" rel="noopener" aria-label="WhatsApp">☎</a>
 
 </body>
 </html>
