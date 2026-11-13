@@ -458,7 +458,17 @@ async function handle(request, env) {
     }, 201);
   }
 
-  return env.ASSETS.fetch(request);
+  // return env.ASSETS.fetch(request);
+  // Serve website files safely
+if (!env.ASSETS) {
+  console.error("ASSETS binding is missing");
+  return new Response(
+    "Website assets binding is not configured. Please redeploy using wrangler.jsonc.",
+    { status: 503 }
+  );
+}
+
+return env.ASSETS.fetch(request);
 }
 
 export default {
