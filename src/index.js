@@ -85,14 +85,23 @@ async function body(request) {
 }
 
 async function requireAdmin(request, env) {
-  if (!checkOrigin(request)) {
-    return { error: json({ error: "Invalid request origin" }, 403) };
+  const method = request.method;
+
+  // Check origin for requests that modify data
+  if (!["GET", "HEAD", "OPTIONS"].includes(method)) {
+    if (!checkOrigin(request)) {
+      return {
+        error: json({ error: "Invalid request origin" }, 403)
+      };
+    }
   }
 
   const admin = await getAdmin(request, env);
 
   if (!admin) {
-    return { error: json({ error: "Unauthorized" }, 401) };
+    return {
+      error: json({ error: "Unauthorized" }, 401)
+    };
   }
 
   return { admin };
