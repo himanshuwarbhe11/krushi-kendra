@@ -13,7 +13,9 @@ const encoder = new TextEncoder();
 
 function randomToken() {
   const bytes = crypto.getRandomValues(new Uint8Array(32));
-  return Array.from(bytes, b => b.toString(16).padStart(2, "0")).join("");
+  return Array.from(bytes, b =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
 }
 
 async function hash(value) {
@@ -22,8 +24,9 @@ async function hash(value) {
     encoder.encode(value)
   );
 
-  return Array.from(new Uint8Array(digest),
-    b => b.toString(16).padStart(2, "0")).join("");
+  return Array.from(new Uint8Array(digest), b =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
 }
 
 // Password hashing: PBKDF2-SHA256
@@ -43,9 +46,8 @@ async function passwordHash(password, salt = randomToken()) {
     hash: "SHA-256"
   }, key, 256);
 
-  const result = Array.from(
-    new Uint8Array(bits),
-    b => b.toString(16).padStart(2, "0")
+  const result = Array.from(new Uint8Array(bits), b =>
+    b.toString(16).padStart(2, "0")
   ).join("");
 
   return `${salt}:${result}`;
@@ -165,10 +167,10 @@ async function handle(request, env) {
       }
 
       const username = data.username.trim();
-
-      // Atomic conditional insert prevents concurrent first-time setup.
       const stored = await passwordHash(data.password);
 
+      // Atomic conditional insert:
+      // only the first administrator can be created.
       const result = await env.DB.prepare(`
         INSERT INTO admins (username, password_hash)
         SELECT ?, ?
@@ -184,14 +186,17 @@ async function handle(request, env) {
         message: "Admin created"
       }, 201);
 
-    } } catch (error) {
-  console.error("SETUP ERROR:", error?.stack || error);
+    } catch (error) {
+      console.error(
+        "SETUP ERROR:",
+        error?.stack || error
+      );
 
-  return json({
-    error: "Admin setup failed",
-    diagnostic: error?.message || "Unknown error"
-  }, 500);
-}
+      return json({
+        error: "Admin setup failed",
+        diagnostic: error?.message || "Unknown error"
+      }, 500);
+    }
   }
 
   // Admin login
@@ -204,7 +209,8 @@ async function handle(request, env) {
 
     if (
       typeof data.username !== "string" ||
-      typeof data.password !== "string"
+      typeof data.password !== "string" ||
+      data.password.length > 128
     ) {
       return json({ error: "Invalid credentials" }, 400);
     }
