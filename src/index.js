@@ -184,13 +184,14 @@ async function handle(request, env) {
         message: "Admin created"
       }, 201);
 
-    } catch (error) {
-      console.error("SETUP ERROR:", error?.stack || error);
+    } } catch (error) {
+  console.error("SETUP ERROR:", error?.stack || error);
 
-      return json({
-        error: "Admin setup failed"
-      }, 500);
-    }
+  return json({
+    error: "Admin setup failed",
+    diagnostic: error?.message || "Unknown error"
+  }, 500);
+}
   }
 
   // Admin login
