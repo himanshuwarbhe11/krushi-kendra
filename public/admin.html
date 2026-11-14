@@ -1,35 +1,125 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#166534">
   <title>Shree Om Krushi Kendra - Admin</title>
   <link rel="stylesheet" href="/admin.css">
 </head>
 <body>
   <main class="wrap">
+
     <header>
       <h1>🌱 श्री ओम कृषी केंद्र</h1>
       <p>Admin Management Panel</p>
     </header>
 
+    <!-- ADMIN LOGIN -->
     <section id="login">
       <h2>Admin Login</h2>
+
       <form id="loginForm">
-        <input id="username" placeholder="Username" required>
-        <input id="password" type="password"
-          placeholder="Password" required>
-        <button>Login</button>
+        <input
+          id="username"
+          placeholder="Username"
+          autocomplete="username"
+          required
+        >
+
+        <input
+          id="password"
+          type="password"
+          placeholder="Password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button type="submit">Login</button>
       </form>
+
       <p id="loginError" class="error"></p>
+
+      <hr>
+
+      <p>New administrator?</p>
+
+      <button
+        type="button"
+        id="showRegister"
+        class="secondary"
+      >
+        Create New Admin Account
+      </button>
     </section>
 
+    <!-- ADMIN REGISTRATION -->
+    <section id="register" hidden>
+      <h2>Create New Admin Account</h2>
+
+      <form id="registerForm">
+
+        <input
+          id="newUsername"
+          placeholder="New username"
+          autocomplete="username"
+          minlength="3"
+          maxlength="50"
+          required
+        >
+
+        <input
+          id="newPassword"
+          type="password"
+          placeholder="New password (minimum 12 characters)"
+          autocomplete="new-password"
+          minlength="12"
+          maxlength="128"
+          required
+        >
+
+        <input
+          id="confirmPassword"
+          type="password"
+          placeholder="Confirm password"
+          autocomplete="new-password"
+          minlength="12"
+          maxlength="128"
+          required
+        >
+
+        <input
+          id="setupToken"
+          type="password"
+          placeholder="Administrator setup token"
+          autocomplete="off"
+          required
+        >
+
+        <button type="submit">Create Account</button>
+
+        <button
+          type="button"
+          id="backToLogin"
+          class="secondary"
+        >
+          Back to Login
+        </button>
+
+      </form>
+
+      <p id="registerMessage" role="status"></p>
+    </section>
+
+    <!-- DASHBOARD -->
     <section id="dashboard" hidden>
+
       <div class="top">
         <h2>Dashboard</h2>
-        <button id="logout" class="secondary">Logout</button>
+        <button id="logout" class="secondary">
+          Logout
+        </button>
       </div>
 
       <nav>
@@ -39,45 +129,95 @@
         <button data-tab="reports">Reports</button>
       </nav>
 
+      <!-- PRODUCTS -->
       <section id="products" class="panel">
         <h3>Product Management</h3>
+
         <form id="productForm">
-          <input id="productName" placeholder="Product name" required>
-          <input id="category" placeholder="Category">
-          <textarea id="description" placeholder="Description"></textarea>
-          <input id="price" type="number" min="0" step="0.01"
-            placeholder="Price (₹)" required>
-          <input id="stock" type="number" min="0" step="1"
-            placeholder="Stock" required>
-          <input id="imageUrl" type="url" placeholder="Image URL">
-          <button id="saveProduct">Add Product</button>
-          <button type="button" id="cancelEdit" class="secondary" hidden>
+          <input
+            id="productName"
+            placeholder="Product name"
+            required
+          >
+
+          <input
+            id="category"
+            placeholder="Category"
+          >
+
+          <textarea
+            id="description"
+            placeholder="Description"
+          ></textarea>
+
+          <input
+            id="price"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Price (₹)"
+            required
+          >
+
+          <input
+            id="stock"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="Stock"
+            required
+          >
+
+          <input
+            id="imageUrl"
+            type="url"
+            placeholder="Image URL"
+          >
+
+          <button id="saveProduct">
+            Add Product
+          </button>
+
+          <button
+            type="button"
+            id="cancelEdit"
+            class="secondary"
+            hidden
+          >
             Cancel edit
           </button>
         </form>
+
         <div id="productList"></div>
       </section>
 
+      <!-- CUSTOMERS -->
       <section id="customers" class="panel" hidden>
         <h3>Customers</h3>
         <div id="customerList"></div>
       </section>
 
+      <!-- ORDERS -->
       <section id="orders" class="panel" hidden>
         <h3>Orders</h3>
         <div id="orderList"></div>
       </section>
 
+      <!-- REPORTS -->
       <section id="reports" class="panel" hidden>
         <h3>Sales Summary</h3>
         <div id="reportSummary"></div>
+
         <h3>Last 30 days</h3>
         <div id="dailyReport"></div>
       </section>
 
       <p id="message" role="status"></p>
+
     </section>
+
   </main>
+
   <script src="/admin.js" defer></script>
 </body>
 </html>
