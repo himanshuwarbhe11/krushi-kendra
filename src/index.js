@@ -42,12 +42,13 @@ async function passwordHash(password, salt = randomToken()) {
   const bits = await crypto.subtle.deriveBits({
     name: "PBKDF2",
     salt: encoder.encode(salt),
-    iterations: 310000,
+    iterations: 100000,
     hash: "SHA-256"
   }, key, 256);
 
-  const result = Array.from(new Uint8Array(bits), b =>
-    b.toString(16).padStart(2, "0")
+  const result = Array.from(
+    new Uint8Array(bits),
+    b => b.toString(16).padStart(2, "0")
   ).join("");
 
   return `${salt}:${result}`;
