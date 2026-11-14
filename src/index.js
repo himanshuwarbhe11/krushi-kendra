@@ -150,37 +150,104 @@ async function handle(request, env) {
   }
 
   // One-time secure admin creation
+  
+  // One-time secure admin creation
   if (path === "/api/setup" && method === "POST") {
     if (!env.SETUP_TOKEN) {
       return json({ error: "Setup is disabled" }, 403);
     }
 
-    const data = await body(request);
-    const admins = await env.DB.prepare(
-      "SELECT COUNT(*) AS count FROM admins"
-    ).first();
+    try {
+      console.log("SETUP STEP 1: Checking request");
 
-    if (admins.count > 0) {
-      return json({ error: "Admin already exists" }, 403);
-    }
+      if (!checkOrigin(request)) {
+        return json({ error: "Invalid request origin" }, 403);
+      }
 
-    if (data.setupToken !== env.SETUP_TOKEN ||
+      const data = await body(request);
+
+      if (
+        data.setupToken !== env.SETUP_TOKEN ||
         typeof data.username !== "string" ||
         typeof data.password !== "string" ||
         data.username.length < 3 ||
         data.password.length < 12 ||
-        data.password.length > 128) {
-      return json({ error: "Invalid setup details" }, 400);
+        data.password.length > 128
+      ) {
+        return json({ error: "Invalid setup details" }, 400);
+      }
+
+      console.log("SETUP STEP 2: Checking database");
+
+      const admins = await env.DB.prepare(
+        "SELECT COUNT(*) AS count FROM admins"
+      ).first();
+
+      if (admins.count > 0) {
+        return json({ error: "Admin already exists" }, 403);
+      }
+
+      console.log("SETUP STEP 3: Hashing password");
+
+      const stored = await passwordHash(data.password);
+
+      console.log("SETUP STEP 4: Inserting administrator");
+
+      await env.DB.prepare(
+        "INSERT INTO admins (username,password_hash) VALUES (?,?)"
+      ).bind(data.username, stored).run();
+
+      console.log("SETUP STEP 5: Success");
+
+      return json({
+        success: true,
+        message: "Admin created"
+      }, 201);
+
+    } catch (error) {
+      console.error(
+        "SETUP DIAGNOSTIC ERROR:",
+        error?.stack || error
+      );
+
+      return json({
+        error: "Setup operation failed",
+        diagnostic: "Check Cloudflare Worker logs"
+      }, 500);
     }
-
-    const stored = await passwordHash(data.password);
-
-    await env.DB.prepare(
-      "INSERT INTO admins (username,password_hash) VALUES (?,?)"
-    ).bind(data.username, stored).run();
-
-    return json({ success: true, message: "Admin created" }, 201);
   }
+
+  // if (path === "/api/setup" && method === "POST") {
+  //   if (!env.SETUP_TOKEN) {
+  //     return json({ error: "Setup is disabled" }, 403);
+  //   }
+
+  //   const data = await body(request);
+  //   const admins = await env.DB.prepare(
+  //     "SELECT COUNT(*) AS count FROM admins"
+  //   ).first();
+
+  //   if (admins.count > 0) {
+  //     return json({ error: "Admin already exists" }, 403);
+  //   }
+
+  //   if (data.setupToken !== env.SETUP_TOKEN ||
+  //       typeof data.username !== "string" ||
+  //       typeof data.password !== "string" ||
+  //       data.username.length < 3 ||
+  //       data.password.length < 12 ||
+  //       data.password.length > 128) {
+  //     return json({ error: "Invalid setup details" }, 400);
+  //   }
+
+  //   const stored = await passwordHash(data.password);
+
+  //   await env.DB.prepare(
+  //     "INSERT INTO admins (username,password_hash) VALUES (?,?)"
+  //   ).bind(data.username, stored).run();
+
+  //   return json({ success: true, message: "Admin created" }, 201);
+  // }
 
   // Admin login
   if (path === "/api/admin/login" && method === "POST") {
