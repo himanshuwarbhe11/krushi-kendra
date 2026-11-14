@@ -486,6 +486,63 @@ async function handle(request, env) {
     return json({ error: "Not found" }, 404);
   }
 
+    // Create additional administrator
+    // Only an already authenticated admin can do this.
+    if (path === "/api/admin/create" && method === "POST") {
+      const data = await body(request);
+
+      if (
+        typeof data.username !== "string" ||
+        typeof data.password !== "string"
+      ) {
+        return json({ error: "Invalid account details" }, 400);
+      }
+
+      const username = data.username.trim();
+
+      if (
+        username.length < 3 ||
+        username.length > 50 ||
+        data.password.length < 12 ||
+        data.password.length > 128
+      ) {
+        return json({
+          error: "Username or password does not meet requirements"
+        }, 400);
+      }
+
+      const existing = await env.DB.prepare(
+        "SELECT id FROM admins WHERE username = ?"
+      ).bind(username).first();
+
+      if (existing) {
+        return json({
+          error: "Username already exists"
+        }, 409);
+      }
+
+      const stored = await passwordHash(data.password);
+
+      try {
+        await env.DB.prepare(`
+          INSERT INTO admins (username, password_hash)
+          VALUES (?, ?)
+        `).bind(username, stored).run();
+
+        return json({
+          success: true,
+          message: "New admin created successfully"
+        }, 201);
+
+      } catch (error) {
+        console.error("ADMIN CREATE ERROR:", error);
+
+        return json({
+          error: "Could not create administrator"
+        }, 500);
+      }
+    }
+
   // Public WhatsApp order creation
   if (path === "/api/orders" && method === "POST") {
     if (!checkOrigin(request)) {
