@@ -24,11 +24,36 @@ async function hash(value) {
     b => b.toString(16).padStart(2, "0")).join("");
 }
 
-async function passwordHash(password, salt = randomToken()) {
-  const key = await crypto.subtle.importKey(
-    "raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]
-  );
+// async function passwordHash(password, salt = randomToken()) {
+//   const key = await crypto.subtle.importKey(
+//     "raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]
+//   );
+try {
+  console.log("SETUP: Starting password hashing");
 
+  const stored = await passwordHash(data.password);
+
+  console.log("SETUP: Password hashing successful");
+
+  const result = await env.DB.prepare(
+    "INSERT INTO admins (username,password_hash) VALUES (?,?)"
+  ).bind(data.username, stored).run();
+
+  console.log("SETUP: Admin inserted", result.success);
+
+  return json({
+    success: true,
+    message: "Admin created"
+  }, 201);
+
+} catch (error) {
+  console.error("SETUP ERROR:", error?.stack || error);
+
+  return json({
+    error: "Admin setup failed",
+    stage: "Password hashing or database insertion"
+  }, 500);
+}
   const bits = await crypto.subtle.deriveBits({
     name: "PBKDF2",
     salt: encoder.encode(salt),
